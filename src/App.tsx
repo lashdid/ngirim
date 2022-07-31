@@ -19,7 +19,7 @@ const App: Component = () => {
         name="description"
         content="A file transfer website with 6-digit key sharing system."
       />
-      <Meta property="og:image" content="src/assets/ngirim-banner.jpg" />
+      <Meta property="og:image" content="src/public/ngirim-banner.jpg" />
       <Meta property="og:image:alt" content="Ngirim Banner Image" />
       <Show when={isModalOpen()}>
         <Modal />
@@ -41,7 +41,7 @@ const Modal: Component = () => {
     <div class="fixed flex w-full h-full bg-black bg-opacity-80 z-10 items-center">
       <div class="w-[30rem] flex flex-col p-10 bg-gray-700 mx-auto items-center rounded space-y-3">
         <Show when={loadingText()}>
-          <img src="src/assets/vibing_cat.gif" alt="vibing-cat" width={120} />
+          <img src="src/public/vibing_cat.gif" alt="vibing-cat" width={120} />
           <span class="text-xl text-white">{loadingText()}</span>
         </Show>
         <Show when={downloadKey() !== 0}>
@@ -63,7 +63,7 @@ const Modal: Component = () => {
           </button>
         </Show>
         <Show when={fileLink()}>
-          <img src="src/assets/kissing_cat.gif" alt="kissing-cat" width={120} />
+          <img src="src/public/kissing_cat.gif" alt="kissing-cat" width={120} />
           <p class="text-white">
             The file is ready! Click the button to download
           </p>
