@@ -16,9 +16,8 @@ const App: Component = () => {
     <MetaProvider>
       <Title>Ngirim</Title>
       <Meta property="og:site_name" content="ngirim.vercel.app"/>
-      <Meta property="og:title" content="Ngirim"/>
+      <Meta property="og:title" content="Ngirim - File Transfer Website"/>
       <Meta name="description" />
-      {/* <Meta property="og:image" content="/ngirim-banner.jpg" /> */}
       <Show when={isModalOpen()}>
         <Modal />
       </Show>
