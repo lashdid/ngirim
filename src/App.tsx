@@ -39,7 +39,7 @@ const App: Component = () => {
 const Modal: Component = () => {
   return (
     <div class="fixed flex w-full h-full bg-black bg-opacity-80 z-10 items-center">
-      <div class="w-[30rem] flex flex-col p-10 bg-gray-700 mx-auto items-center rounded space-y-3">
+      <div class="w-[30rem] flex flex-col p-10 bg-gray-700 mx-auto items-center sm:rounded space-y-3">
         <Show when={loadingText()}>
           <img src="/vibing_cat.gif" alt="vibing-cat" width={120} />
           <span class="text-xl text-white">{loadingText()}</span>
@@ -64,7 +64,7 @@ const Modal: Component = () => {
         </Show>
         <Show when={fileLink()}>
           <img src="/kissing_cat.gif" alt="kissing-cat" width={120} />
-          <p class="text-white">
+          <p class="text-white text-center">
             The file is ready! Click the button to download
           </p>
           <a

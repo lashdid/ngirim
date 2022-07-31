@@ -12,6 +12,7 @@ const CodeInput: Component = () => {
     if (inputField?.value) {
       setModalOpen(true);
       setLoadingText("Getting File");
+      setErrorText('')
       await $.ajax({
         url: "https://send-anywhere.com/web/v1/key/" + inputField?.value,
         type: "GET",
