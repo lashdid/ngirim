@@ -17,14 +17,14 @@ const Input: Component<{ maxFileSize: number; on_error: () => void }> = (
         isEnterInput() ? "bg-gray-900" : "bg-transparent"
       }`}
     >
-      <p class="flex items-center justify-center absolute w-full h-full text-xl text-center font-semibold text-green-600 space-x-3 cursor-pointer">
+      <p class="absolute w-full h-full flex items-center justify-center text-xl text-center font-semibold text-green-600 space-x-3 cursor-pointer">
         <AiOutlinePlus/>
         <span>Click / Drop to send files</span>
       </p>
       <input
         type="file"
         title="Input File Here"
-        class="w-full h-full py-10 opacity-0 cursor-pointer"
+        class="w-full h-full py-14 text-[0px] opacity-0 cursor-pointer"
         onDragEnter={() => setEnterInput(true)}
         onDragExit={() => setEnterInput(false)}
         onDrop={() => setEnterInput(false)}

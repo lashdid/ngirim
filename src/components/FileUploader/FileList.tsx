@@ -1,7 +1,6 @@
 import { Component, createSignal, For, mergeProps, Show } from "solid-js";
 import bytes from "bytes";
 import { AiOutlineClose } from "solid-icons/ai";
-import SubmitButton from "./SubmitButton";
 
 const [isFileError, setFileError] = createSignal(false);
 
@@ -61,10 +60,9 @@ const FileList: Component<{
           <span class="text-red-500 text-xs">Maximum file size: 300MB</span>
         </Show>
       </div>
-      <SubmitButton disabled={isFileError()} />
     </Show>
   );
 };
 
-export { setFileError };
+export { isFileError, setFileError };
 export default FileList;

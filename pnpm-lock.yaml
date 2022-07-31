@@ -1,9 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@solidjs/meta': ^0.28.0
   '@types/bytes': ^3.1.1
+  '@types/jquery': ^3.5.14
   autoprefixer: ^10.4.7
   bytes: ^3.1.2
+  jquery: ^3.6.0
   postcss: ^8.4.14
   solid-icons: ^1.0.0
   solid-js: ^1.4.7
@@ -13,12 +16,15 @@ specifiers:
   vite-plugin-solid: ^2.3.0
 
 dependencies:
+  '@solidjs/meta': 0.28.0_solid-js@1.4.7
   bytes: 3.1.2
+  jquery: 3.6.0
   solid-icons: 1.0.0_solid-js@1.4.7
   solid-js: 1.4.7
 
 devDependencies:
   '@types/bytes': 3.1.1
+  '@types/jquery': 3.5.14
   autoprefixer: 10.4.7_postcss@8.4.14
   postcss: 8.4.14
   tailwindcss: 3.1.6
@@ -394,8 +400,26 @@ packages:
       fastq: 1.13.0
     dev: true
 
+  /@solidjs/meta/0.28.0_solid-js@1.4.7:
+    resolution: {integrity: sha512-x52VdB9RZJ1apDB/pAmf58oeJsJ0lGKFXWjnm/TE/MlENIBPg3JaW8H5v2HnGpQC0WUbgiIsDFWpLWVNBo5t6g==}
+    peerDependencies:
+      solid-js: '>=1.4.0'
+    dependencies:
+      solid-js: 1.4.7
+    dev: false
+
   /@types/bytes/3.1.1:
     resolution: {integrity: sha512-lOGyCnw+2JVPKU3wIV0srU0NyALwTBJlVSx5DfMQOFuuohA8y9S8orImpuIQikZ0uIQ8gehrRjxgQC1rLRi11w==}
+    dev: true
+
+  /@types/jquery/3.5.14:
+    resolution: {integrity: sha512-X1gtMRMbziVQkErhTQmSe2jFwwENA/Zr+PprCkF63vFq+Yt5PZ4AlKqgmeNlwgn7dhsXEK888eIW2520EpC+xg==}
+    dependencies:
+      '@types/sizzle': 2.3.3
+    dev: true
+
+  /@types/sizzle/2.3.3:
+    resolution: {integrity: sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ==}
     dev: true
 
   /acorn-node/1.8.2:
@@ -930,6 +954,10 @@ packages:
     resolution: {integrity: sha512-DBVOQNiPKnGMxRMLIYSwERAS5MVY1B7xYiGnpgctsOFvVDz9f9PFXXxMcTOHuoqYp4NK9qFYQaIC1NRRxLMpBQ==}
     engines: {node: '>=12.13'}
     dev: true
+
+  /jquery/3.6.0:
+    resolution: {integrity: sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==}
+    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
