@@ -15,12 +15,10 @@ const App: Component = () => {
   return (
     <MetaProvider>
       <Title>Ngirim</Title>
-      <Meta
-        name="description"
-        content="A file transfer website with 6-digit key sharing system."
-      />
+      <Meta property="og:site_name" content="ngirim.vercel.app"/>
+      <Meta property="og:title" content="Ngirim"/>
+      <Meta name="description" />
       <Meta property="og:image" content="/ngirim-banner.jpg" />
-      <Meta property="og:image:alt" content="Ngirim Banner Image" />
       <Show when={isModalOpen()}>
         <Modal />
       </Show>
@@ -71,7 +69,7 @@ const Modal: Component = () => {
             href={fileLink()}
             class="p-3 text-white text-center font-semibold rounded bg-green-500 hover:bg-green-600"
             onClick={() => {
-              setFileLink('')
+              setFileLink("");
               setModalOpen(false);
             }}
           >
