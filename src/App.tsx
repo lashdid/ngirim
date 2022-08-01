@@ -9,16 +9,10 @@ import FileUploader, {
   setModalOpen,
 } from "./components/FileUploader";
 import CodeInput, { fileLink, setFileLink } from "./components/CodeInput";
-import { Meta, MetaProvider, Title } from "@solidjs/meta";
 
 const App: Component = () => {
   return (
-    <MetaProvider>
-      <Title>Ngirim</Title>
-      <Meta name="description" content="A file transfer website with 6-digit key sharing system."/>
-      <Meta name="keywords" content="ngirim, file, transfer"/>
-      <Meta property="og:site_name" content="ngirim.vercel.app"/>
-      <Meta property="og:title" content="Ngirim - File Transfer Website"/>
+    <>
       <Show when={isModalOpen()}>
         <Modal />
       </Show>
@@ -30,7 +24,7 @@ const App: Component = () => {
           <FileUploader maxFileSize={300 * 1024 ** 2} />
         </div>
       </section>
-    </MetaProvider>
+    </>
   );
 };
 
