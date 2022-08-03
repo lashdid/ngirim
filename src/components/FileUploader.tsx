@@ -21,7 +21,7 @@ const FileUploader: Component<{ maxFileSize: number }> = (props) => {
       url: baseUrl + "device",
       type: "GET",
       dataType: "jsonp",
-      data: { api_key: apiKey },
+      data: { api_key: apiKey, profile_name: "shrek" },
       cache: false,
     });
     const roughFiles = files()?.map((file) => ({

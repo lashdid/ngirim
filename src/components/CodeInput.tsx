@@ -10,20 +10,9 @@ const CodeInput: Component = () => {
   let inputField: HTMLInputElement | undefined;
   const onSubmit = async () => {
     if (inputField?.value) {
-      const apiKey = import.meta.env.VITE_SA_API_KEY;
-      const baseUrl = "https://send-anywhere.com/web/v1/";
-      // get device
       setModalOpen(true);
-      setErrorText("");
-      setLoadingText("Getting Device Detail");
-      await $.ajax({
-        url: baseUrl + "device",
-        type: "GET",
-        dataType: "jsonp",
-        data: { api_key: apiKey },
-        cache: false,
-      });
       setLoadingText("Getting File");
+      setErrorText("");
       await $.ajax({
         url: "https://send-anywhere.com/web/v1/key/" + inputField?.value,
         type: "GET",
