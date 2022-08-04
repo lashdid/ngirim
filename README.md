@@ -2,7 +2,7 @@
 File transfer website with 6-digit key sharing system. **( In Progress )**
 
 ### What is that?
-It's a website to transfer files with a system exactly like [SendAnywhere](https://send-anywhere.com/). I am using this [SendAnywhere Web API](https://github.com/estmob/SendAnywhere-Web-API) to build this.
+It's a website to transfer files with a system exactly like [SendAnywhere](https://send-anywhere.com/). I am using Firebase Cloud Storage and Firebase Firestore to build this.
 
 ### How to use it?
 **Sender**
@@ -16,6 +16,6 @@ It's a website to transfer files with a system exactly like [SendAnywhere](https
 - Download the file
 
 ### Why did i made this?
-Because the official [SendAnywhere](https://send-anywhere.com/) website doesn't support on mobile ( you have to install the app or switch to desktop view). Even if i rarely use this website, i have to switch to desktop view on mobile when i want to use it and i'm too lazy for that.
+Because the official [SendAnywhere](https://send-anywhere.com/) website has 5 seconds ad and doesn't support on mobile ( you have to install the app or switch to desktop view). Even if i rarely use this website, i have to switch to desktop view on mobile and wait 5 seconds for the ad when i want to use it and i'm too lazy for that.
 
-Also to learn SolidJS
+Also to learn SolidJS and Firebase.
