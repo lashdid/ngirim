@@ -2,7 +2,7 @@
 File transfer website with 6-digit key sharing system. **( In Progress )**
 
 ### What is that?
-It's a website to transfer files with a system exactly like [SendAnywhere](https://send-anywhere.com/). I am using Firebase Cloud Storage and Firebase Firestore to build this.
+It's a website to transfer files with a system exactly like [SendAnywhere](https://send-anywhere.com/). I am using Firebase Cloud Storage to build this.
 
 ### How to use it?
 **Sender**
