@@ -18,7 +18,7 @@ const Input: Component<{ maxFileSize: number; on_error: () => void }> = (
       }`}
     >
       <p class="absolute w-full h-full flex items-center justify-center text-xl text-center font-semibold text-green-600 space-x-3 cursor-pointer">
-        <AiOutlinePlus/>
+        <AiOutlinePlus />
         <span>Click / Drop to send files</span>
       </p>
       <input
@@ -30,7 +30,7 @@ const Input: Component<{ maxFileSize: number; on_error: () => void }> = (
         onDrop={() => setEnterInput(false)}
         onChange={(event) => {
           setFiles([...(files() || []), ...(event.currentTarget.files || [])]);
-          if(files()?.some((file) => file.size > data.maxFileSize)){
+          if (files()?.some((file) => file.size > data.maxFileSize)) {
             data.on_error();
           }
         }}

@@ -1,36 +1,41 @@
+import { getDownloadURL, StorageReference } from "firebase/storage";
+import { listAll, ref } from "firebase/storage";
 import { AiOutlineDownload } from "solid-icons/ai";
 import { Component, createSignal } from "solid-js";
-import $ from "jquery"; //api does'nt support axios so i use this :(
+import { storage } from "../../utils/getFirebaseStorage";
 import { setLoadingText, setModalOpen } from "./FileUploader";
-
-const [fileLink, setFileLink] = createSignal("");
 const [errorText, setErrorText] = createSignal("");
+const [receivedFile, setReceivedFile] = createSignal<
+  Array<{ name: string; link: string }>
+>([]);
 
 const CodeInput: Component = () => {
   let inputField: HTMLInputElement | undefined;
   const onSubmit = async () => {
-    if (inputField?.value) {
+    if (inputField?.value.length! === 6) {
       setModalOpen(true);
-      setLoadingText("Getting File");
-      setErrorText("");
-      await $.ajax({
-        url: "https://send-anywhere.com/web/v1/key/" + inputField?.value,
-        type: "GET",
-        dataType: "jsonp",
-        timeout: 3000,
-        cache: false,
-      })
-        .done((data) => {
-          setLoadingText("");
-          setFileLink(data.weblink);
+      const listRef = ref(storage, "/" + inputField?.value);
+      setLoadingText("Getting Files");
+      listAll(listRef)
+        .then(async (res) => {
+          const filesData = res.items.map(async (item) => {
+            const downloadRef = ref(storage, item.fullPath)
+            const fileUrl = await getDownloadURL(downloadRef).then((url) => url)
+            return {
+              name: item.name,
+              link: fileUrl,
+            }
+          });
+          setReceivedFile(await Promise.all(filesData));
+          setLoadingText("")
         })
-        .fail((err) => {
+        .catch((error) => {
           setModalOpen(false);
-          setLoadingText("");
-          setErrorText("The code might be expired or invalid");
+          setErrorText("Invalid Code!");
         });
+      setErrorText("");
     } else {
-      setErrorText("Please input the code first");
+      setErrorText("Please input the valid code");
     }
   };
   return (
@@ -55,5 +60,5 @@ const CodeInput: Component = () => {
   );
 };
 
-export { fileLink, setFileLink };
+export { receivedFile, setReceivedFile };
 export default CodeInput;

@@ -1,4 +1,4 @@
-import { Component, Show } from "solid-js";
+import { Component, For, Show } from "solid-js";
 import MainTitle from "./components/MainTitle";
 import FileUploader, {
   downloadKey,
@@ -8,7 +8,8 @@ import FileUploader, {
   setLoadingText,
   setModalOpen,
 } from "./components/FileUploader";
-import CodeInput, { fileLink, setFileLink } from "./components/CodeInput";
+import CodeInput, { receivedFile } from "./components/CodeInput";
+import { AiOutlineDownload } from "solid-icons/ai";
 
 const App: Component = () => {
   return (
@@ -36,39 +37,53 @@ const Modal: Component = () => {
           <img src="/vibing_cat.gif" alt="vibing-cat" width={120} />
           <span class="text-xl text-white">{loadingText()}</span>
         </Show>
-        <Show when={downloadKey() !== 0}>
+        <Show when={downloadKey()}>
           <span class="text-white">Here is your code:</span>
           <p class="text-6xl text-green-500">{downloadKey()}</p>
-          <small class="text-white">
-            The code will be expired in 10 minutes
-          </small>
           <button
             class="p-3 text-white text-center font-semibold rounded bg-green-500 hover:bg-green-600"
             onClick={() => {
               navigator.clipboard.writeText(downloadKey().toString());
               setLoadingText("");
-              setDownloadKey(0);
+              setDownloadKey("");
               setModalOpen(false);
             }}
           >
             Copy & Close
           </button>
         </Show>
-        <Show when={fileLink()}>
+        <Show when={receivedFile().length > 0}>
           <img src="/kissing_cat.gif" alt="kissing-cat" width={120} />
-          <p class="text-white text-center">
-            The file is ready! Click the button to download
+          <p class="text-white text-center border-b border-green-500 pb-2">
+            The file is ready!
           </p>
-          <a
-            href={fileLink()}
-            class="p-3 text-white text-center font-semibold rounded bg-green-500 hover:bg-green-600"
-            onClick={() => {
-              setFileLink("");
-              setModalOpen(false);
-            }}
-          >
-            Download File
-          </a>
+          <div class="w-full flex flex-col space-y-3">
+            <For each={receivedFile()}>
+              {(file) => {
+                return (
+                  <div class="w-full flex justify-between items-center">
+                    <p class="text-sm text-white">
+                      {/* f*** regex */}
+                      {`${file.name.slice(0, 30).split(".")[0]}${
+                        file.name.split(".").length > 1
+                          ? `.${file.name.split(".")[1]}`
+                          : ""
+                      }`}
+                    </p>
+                    <a
+                      target="_blank"
+                      download={file.name}
+                      href={file.link}
+                      class="p-3 text-white text-center font-semibold rounded bg-green-500 hover:bg-green-600"
+                    >
+                      <AiOutlineDownload/>
+                    </a>
+                  </div>
+                );
+              }}
+            </For>
+          </div>
+          <button onClick={() => setModalOpen(false)} class="px-3 py-2 text-white text-center font-semibold rounded border hover:text-green-500 hover:border-green-500">Close</button>
         </Show>
       </div>
     </div>
