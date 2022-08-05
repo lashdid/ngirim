@@ -12,18 +12,18 @@ const [isModalOpen, setModalOpen] = createSignal(false);
 const [loadingText, setLoadingText] = createSignal("");
 
 const FileUploader: Component<{ maxFileSize: number }> = (props) => {
-  const data = mergeProps({ maxFileSize: 100 * 1024 ** 2 }, props);
+  const data = mergeProps({ maxFileSize: 0 }, props);
   const onSubmit = async () => {
     const [uploadedFileCount, setUploadedFileCount] = createSignal(0);
     setModalOpen(true);
-    setLoadingText("Uploading Files");
+    setLoadingText(`Uploaded (0/${files()?.length}) Files`);
     const downloadKey = getRandomNumber();
     const filePromises = files()?.map(async (file) => {
       const storageRef = ref(storage, downloadKey + "/" + file.name);
       return uploadBytes(storageRef, file).then(() => {
         setUploadedFileCount((oldFileCount) => (oldFileCount += 1));
         setLoadingText(
-          `Uploading (${uploadedFileCount()}/${files()?.length}) Files`
+          `Uploaded (${uploadedFileCount()}/${files()?.length}) Files`
         );
       });
     });

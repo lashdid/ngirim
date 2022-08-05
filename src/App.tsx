@@ -8,8 +8,13 @@ import FileUploader, {
   setLoadingText,
   setModalOpen,
 } from "./components/FileUploader";
-import CodeInput, { receivedFile } from "./components/CodeInput";
-import { AiOutlineDownload } from "solid-icons/ai";
+import CodeInput, {
+  receivedFile,
+  receivedZip,
+  setReceivedFile,
+  setReceivedZip,
+} from "./components/CodeInput";
+import { saveAs } from "file-saver";
 
 const App: Component = () => {
   return (
@@ -22,7 +27,7 @@ const App: Component = () => {
           <MainTitle />
           <CodeInput />
           <p class="text-xl font-light text-white">Or</p>
-          <FileUploader maxFileSize={300 * 1024 ** 2} />
+          <FileUploader maxFileSize={50 * 1024 ** 2} />
         </div>
       </section>
     </>
@@ -52,38 +57,35 @@ const Modal: Component = () => {
             Copy & Close
           </button>
         </Show>
-        <Show when={receivedFile().length > 0}>
+        <Show when={receivedZip() || receivedFile()}>
           <img src="/kissing_cat.gif" alt="kissing-cat" width={120} />
-          <p class="text-white text-center border-b border-green-500 pb-2">
-            The file is ready!
+          <p class="text-white text-center">
+            The file is ready! Click download to download the file.
           </p>
-          <div class="w-full flex flex-col space-y-3">
-            <For each={receivedFile()}>
-              {(file) => {
-                return (
-                  <div class="w-full flex justify-between items-center">
-                    <p class="text-sm text-white">
-                      {/* f*** regex */}
-                      {`${file.name.slice(0, 30).split(".")[0]}${
-                        file.name.split(".").length > 1
-                          ? `.${file.name.split(".")[1]}`
-                          : ""
-                      }`}
-                    </p>
-                    <a
-                      target="_blank"
-                      download={file.name}
-                      href={file.link}
-                      class="p-3 text-white text-center font-semibold rounded bg-green-500 hover:bg-green-600"
-                    >
-                      <AiOutlineDownload/>
-                    </a>
-                  </div>
-                );
+          <Show when={receivedZip()}>
+            <button
+              class="p-3 text-white text-center font-semibold rounded bg-green-500 hover:bg-green-600"
+              onClick={() => {
+                saveAs(receivedZip(), `ngirim_${new Date().valueOf()}.zip`);
+                setModalOpen(false);
+                setReceivedZip("");
               }}
-            </For>
-          </div>
-          <button onClick={() => setModalOpen(false)} class="px-3 py-2 text-white text-center font-semibold rounded border hover:text-green-500 hover:border-green-500">Close</button>
+            >
+              Download & Close
+            </button>
+          </Show>
+          <Show when={receivedFile()}>
+            <a
+              class="p-3 text-white text-center font-semibold rounded bg-green-500 hover:bg-green-600 cursor-pointer"
+              onClick={() => {
+                saveAs(receivedFile()?.url!, receivedFile()?.name);
+                setModalOpen(false);
+                setReceivedFile(null);
+              }}
+            >
+              Download & Close
+            </a>
+          </Show>
         </Show>
       </div>
     </div>

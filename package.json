@@ -11,6 +11,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/bytes": "^3.1.1",
+    "@types/file-saver": "^2.0.5",
     "@types/jquery": "^3.5.14",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
@@ -21,8 +22,11 @@
   },
   "dependencies": {
     "bytes": "^3.1.2",
+    "file-saver": "^2.0.5",
     "firebase": "^9.9.1",
     "jquery": "^3.6.0",
+    "jszip": "^3.10.1",
+    "jszip-utils": "^0.1.0",
     "solid-icons": "^1.0.0",
     "solid-js": "^1.4.7"
   }

@@ -7,7 +7,7 @@ const Input: Component<{ maxFileSize: number; on_error: () => void }> = (
   props
 ) => {
   const data = mergeProps(
-    { maxFileSize: 100 * 1024 ** 2, on_error: () => {} },
+    { maxFileSize: 0, on_error: () => {} },
     props
   );
   const [isEnterInput, setEnterInput] = createSignal(false);

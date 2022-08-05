@@ -10,7 +10,7 @@ const FileList: Component<{
   setFiles: (files: Array<File>) => void;
 }> = (props) => {
   const data = mergeProps(
-    { files: [], setFiles: () => {}, maxFileSize: 100 * 1024 ** 2 },
+    { files: [], setFiles: () => {}, maxFileSize: 0 },
     props
   );
   return (
@@ -57,7 +57,7 @@ const FileList: Component<{
           )}
         </For>
         <Show when={isFileError()}>
-          <span class="text-red-500 text-xs">Maximum file size: 300MB</span>
+          <span class="text-red-500 text-xs">Maximum file size: 50MB</span>
         </Show>
       </div>
     </Show>
