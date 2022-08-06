@@ -4,7 +4,7 @@ import Input from "./FileUploader/Input";
 import FileList, { isFileError, setFileError } from "./FileUploader/FileList";
 import SubmitButton from "./FileUploader/SubmitButton";
 import getRandomNumber from "../../utils/getRandomNumber";
-import { storage } from "../../utils/getFirebaseStorage";
+import { storage } from "../../utils/getFirebaseUtils";
 import { ref, uploadBytes } from "firebase/storage";
 
 const [downloadKey, setDownloadKey] = createSignal("");

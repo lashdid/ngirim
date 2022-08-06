@@ -2,24 +2,25 @@ import { getDownloadURL, StorageReference } from "firebase/storage";
 import { listAll, ref } from "firebase/storage";
 import { AiOutlineDownload } from "solid-icons/ai";
 import { Component, createSignal } from "solid-js";
-import { storage } from "../../utils/getFirebaseStorage";
+import { storage } from "../../utils/getFirebaseUtils";
 import { setLoadingText, setModalOpen } from "./FileUploader";
 import JSZip, { file, files } from "jszip";
 import setUrlToPromise from "../../utils/setUrlToPromise";
 const [errorText, setErrorText] = createSignal("");
-const [receivedZip, setReceivedZip] = createSignal<Blob | string>("");
+const [inputCode, setInputCode] = createSignal("");
 const [receivedFile, setReceivedFile] = createSignal<{
   name?: string;
-  url?: string;
+  file?: string | Blob;
 } | null>(null);
 
 const CodeInput: Component = () => {
   let inputField: HTMLInputElement | undefined;
-  const onSubmit = async () => {
+  async function onSubmit() {
     if (inputField?.value.length! === 6) {
       setModalOpen(true);
-      const listRef = ref(storage, "/" + inputField?.value);
       setLoadingText("Getting Files");
+      setInputCode(inputField?.value!)
+      const listRef = ref(storage, "/" + inputField?.value);
       const zip = new JSZip();
       await listAll(listRef)
         .then(async (res) => {
@@ -33,7 +34,10 @@ const CodeInput: Component = () => {
             });
             await Promise.all(filesPromises);
             zip.generateAsync({ type: "blob" }).then((content) => {
-              setReceivedZip(content);
+              setReceivedFile({
+                name: `ngirim_${new Date().valueOf()}.zip`,
+                file: content,
+              });
               setLoadingText("");
             });
             setErrorText("");
@@ -42,7 +46,7 @@ const CodeInput: Component = () => {
             const fileUrl = await getDownloadURL(downloadRef).then(
               (url) => url
             );
-            setReceivedFile({ name: res.items[0].name, url: fileUrl });
+            setReceivedFile({ name: res.items[0].name, file: fileUrl });
             setLoadingText("");
           }
         })
@@ -76,5 +80,5 @@ const CodeInput: Component = () => {
   );
 };
 
-export { receivedZip, setReceivedZip, receivedFile, setReceivedFile };
+export { receivedFile, setReceivedFile, inputCode };
 export default CodeInput;

@@ -1,4 +1,4 @@
-import { Component, For, Show } from "solid-js";
+import { Component, createEffect, For, Show } from "solid-js";
 import MainTitle from "./components/MainTitle";
 import FileUploader, {
   downloadKey,
@@ -10,11 +10,26 @@ import FileUploader, {
 } from "./components/FileUploader";
 import CodeInput, {
   receivedFile,
-  receivedZip,
   setReceivedFile,
-  setReceivedZip,
 } from "./components/CodeInput";
 import { saveAs } from "file-saver";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../utils/getFirebaseUtils";
+
+createEffect(async () => {
+  setModalOpen(true);
+  setLoadingText("Please wait");
+  const email = import.meta.env.VITE_FIREBASE_STORAGE_EMAIL;
+  const password = import.meta.env.VITE_FIREBASE_STORAGE_PASSWORD;
+  await signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      setLoadingText("");
+      setModalOpen(false);
+    })
+    .catch((error) => {
+      alert("Oh Uh! Something went wrong :(");
+    });
+});
 
 const App: Component = () => {
   return (
@@ -57,35 +72,21 @@ const Modal: Component = () => {
             Copy & Close
           </button>
         </Show>
-        <Show when={receivedZip() || receivedFile()}>
+        <Show when={receivedFile()}>
           <img src="/kissing_cat.gif" alt="kissing-cat" width={120} />
           <p class="text-white text-center">
             The file is ready! Click download to download the file.
           </p>
-          <Show when={receivedZip()}>
-            <button
-              class="p-3 text-white text-center font-semibold rounded bg-green-500 hover:bg-green-600"
-              onClick={() => {
-                saveAs(receivedZip(), `ngirim_${new Date().valueOf()}.zip`);
-                setModalOpen(false);
-                setReceivedZip("");
-              }}
-            >
-              Download & Close
-            </button>
-          </Show>
-          <Show when={receivedFile()}>
-            <a
-              class="p-3 text-white text-center font-semibold rounded bg-green-500 hover:bg-green-600 cursor-pointer"
-              onClick={() => {
-                saveAs(receivedFile()?.url!, receivedFile()?.name);
-                setModalOpen(false);
-                setReceivedFile(null);
-              }}
-            >
-              Download & Close
-            </a>
-          </Show>
+          <button
+            class="p-3 text-white text-center font-semibold rounded bg-green-500 hover:bg-green-600"
+            onClick={() => {
+              saveAs(receivedFile()?.file!, receivedFile()?.name);
+              setReceivedFile(null);
+              setModalOpen(false);
+            }}
+          >
+            Download & Close
+          </button>
         </Show>
       </div>
     </div>
