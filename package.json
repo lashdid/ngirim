@@ -12,7 +12,6 @@
   "devDependencies": {
     "@types/bytes": "^3.1.1",
     "@types/file-saver": "^2.0.5",
-    "@types/jquery": "^3.5.14",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.6",
@@ -25,8 +24,6 @@
     "file-saver": "^2.0.5",
     "firebase": "^9.9.1",
     "firebase-admin": "^11.0.1",
-    "jquery": "^3.6.0",
-    "js-detect-incognito-private-browsing": "^1.0.5",
     "jszip": "^3.10.1",
     "jszip-utils": "^0.1.0",
     "solid-icons": "^1.0.0",
