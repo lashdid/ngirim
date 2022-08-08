@@ -13,23 +13,6 @@ import CodeInput, {
   setReceivedFile,
 } from "./components/CodeInput";
 import { saveAs } from "file-saver";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../utils/getFirebaseUtils";
-
-createEffect(async () => {
-  setModalOpen(true);
-  setLoadingText("Please wait");
-  const email = import.meta.env.VITE_FIREBASE_STORAGE_EMAIL;
-  const password = import.meta.env.VITE_FIREBASE_STORAGE_PASSWORD;
-  await signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      setLoadingText("");
-      setModalOpen(false);
-    })
-    .catch((error) => {
-      alert("Oh Uh! Something went wrong :(");
-    });
-});
 
 const App: Component = () => {
   return (
