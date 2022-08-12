@@ -1,7 +1,9 @@
 # Ngirim
-File transfer website with 6-digit key sharing system. **( In Progress )**
+File transfer website with 6-digit key sharing system.
 
 > :warning: Don't send anything private here! Because anyone can see your files in this website's database
+
+Your file in database will automatically deleted after 1 day.
 
 ### What is that?
 It's a website to transfer files with a system exactly like [SendAnywhere](https://send-anywhere.com/). I am using Firebase Cloud Storage to build this.
