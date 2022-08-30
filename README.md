@@ -10,8 +10,8 @@ It's a website to transfer files with a system exactly like [SendAnywhere](https
 
 ### How to use it?
 **Sender**
-- Click the button to send the file
-- Add files to the form then send
+- Click / drop to add file
+- Click the "Send" button
 - 6-digit code should appear
 
 **Receiver**
