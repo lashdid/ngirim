@@ -20,6 +20,6 @@ It's a website to transfer files with a system exactly like [SendAnywhere](https
 - Download the file
 
 ### Why did i made this?
-Because the official [SendAnywhere](https://send-anywhere.com/) website has 5 seconds ad and doesn't support on mobile ( you have to install the app or switch to desktop view). Even if i rarely use this website, i have to switch to desktop view on mobile and wait 5 seconds for the ad when i want to use it and i'm too lazy for that.
+I've been using [SendAnywhere](https://send-anywhere.com/) for a long time, but rarely. This website has 5 seconds ad and its not supported on mobile ( you have to install the app or switch to desktop view ) and i'm too lazy for that.
 
 Also to learn SolidJS and Firebase.
